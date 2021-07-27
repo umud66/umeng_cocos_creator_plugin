@@ -1,0 +1,19 @@
+{
+  "name": "importuma",
+  "version": "0.0.1",
+  "description": "插入友盟统计代码",
+  "author": "umud@umud.online",
+  "main": "main.js",
+  "main-menu": {
+    "项目/友盟设置": {
+      "message": "importuma:uma-setting"
+    }
+  },
+  "panel": {
+    "main": "index.js",
+    "type": "dockable",
+    "title": "友盟统计设置",
+    "width": 400,
+    "height": 300
+  }
+}
