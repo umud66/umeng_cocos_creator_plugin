@@ -33,7 +33,7 @@ Editor.Panel.extend({
                   },
                   {
                     disname:"vivo",
-                    platform:"qggame",
+                    platform:"qgame",
                   },
                   {
                     disname:"xiaomi",
