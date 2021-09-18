@@ -34,13 +34,16 @@ function doUma(options,callback){
 
   let umaKey = getUmaKey(String(options.actualPlatform))
   if(!umaKey) {callback();return;}
-  
-  copyFileSync(path.join(__dirname,"uma.min.js"),path.join(options.dest));
-  
+     
   let buffer = fs.readFileSync(path.join(options.dest,"main.js"));
   
   let umaFileName = "uma.min.js"
-
+  if(platformName == "qgame" || platformName == "huawei"){
+    copyFileSync(path.join(__dirname,umaFileName),path.join(options.dest,"src","uma.min.js"));
+  }else{
+    copyFileSync(path.join(__dirname,umaFileName),path.join(options.dest));
+  }
+  
   // let umaCode = `
   //   const uma = require("./${umaFileName}");
   //   console.log("require uma finished");
@@ -48,9 +51,12 @@ function doUma(options,callback){
   //     appKey:"${umaKey}",
   //     useOpenid:false,
   //     debug:false
-  //   })
+  //   }) 
   // `  
   let umaCode = `const uma = require("./${umaFileName}");
+  if(platformName == "qgame" || platformName == "huawei"){
+    umaCode = `const uma = require("src/${umaFileName}");`
+  }
   console.log("require uma finished");
   `;
   fs.writeFileSync(path.join(options.dest,"main.js"),umaCode + buffer.toString());
