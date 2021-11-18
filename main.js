@@ -29,7 +29,9 @@ function getUmaKey(platform){
     // return undefined;
   }
 }
-
+/**
+*友盟初始化代码注入
+*/
 function doUma(options,callback){
 
   let umaKey = getUmaKey(String(options.actualPlatform))
@@ -57,6 +59,7 @@ function doUma(options,callback){
   if(platformName == "qgame" || platformName == "huawei"){
     umaCode = `const uma = require("src/${umaFileName}");`
   }
+  window.uma = uma;
   console.log("require uma finished");
   `;
   fs.writeFileSync(path.join(options.dest,"main.js"),umaCode + buffer.toString());
